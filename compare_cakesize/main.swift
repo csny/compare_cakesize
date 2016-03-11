@@ -31,7 +31,8 @@ for (var row=0,n=CUTNUM;row<n;row++) {
 //print(CAKEINFO)
 //print(arrayCutline)
 
-// ケーキのサイズを計算しやすくするため、切れ目を縦と横に分けた配列に
+// ケーキのサイズを計算しやすくするため、
+// 切れ目の位置を縦:cutVertiと横:cutHorizに格納
 var countv :Int = 0
 for (var i=0,n=CUTNUM;i<n;i++) {
     if (cutLine[i][0] == 0) {
@@ -60,8 +61,7 @@ cutVerti.insert(CAKEINFO[0], atIndex:0)
 cutVerti.insert(0, atIndex:cutVerti.count)
 cutHoriz.insert(CAKEINFO[1], atIndex:0)
 cutHoriz.insert(0, atIndex:cutHoriz.count)
-// ケーキ片の長さの配列を作成
-let cakenum :Int = (cutVerti.count-1) * (cutHoriz.count-1)
+// ケーキ片の横の長さpiecelengthXと縦の長さpiecelengthYに格納
 var piecelengthX :[Int] = [Int](count:cutVerti.count-1, repeatedValue:0)
 var piecelengthY :[Int] = [Int](count:cutHoriz.count-1, repeatedValue:0)
 for (var i=0,n=cutVerti.count-1;i<n;i++) {
@@ -71,7 +71,7 @@ for (var i=0,n=cutHoriz.count-1;i<n;i++) {
     piecelengthY[i] = cutHoriz[i] - cutHoriz[i+1]
 }
 
-// 全部掛けて小さいのを更新
+// ケーキ片の縦横を片っ端から掛け算して、より小さい物を更新
 var smallestPiece :Int = 999999999
 for (var i:Int=0,n=piecelengthX.count;i<n;i++) {
     for (var j:Int=0,n=piecelengthY.count;j<n;j++) {
